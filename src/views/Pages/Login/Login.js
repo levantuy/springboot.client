@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { connect } from 'react-redux';
+import { userActions } from '../../../actions';
 
 class Login extends Component {
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+    const { dispatch } = this.props;
+    if (username && password) {
+      dispatch(userActions.login(username, password));
+    }
+  }
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -60,4 +74,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+}
+
+export default connect(mapStateToProps)(Login);
+
