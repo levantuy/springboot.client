@@ -17,7 +17,7 @@ import './scss/style.css'
 import { DefaultLayout } from './layouts';
 // Pages
 import { Page404, Page500, Register } from './views/Pages';
-import Login from './views/Pages/Login/Login';
+import LoginPage from './containers/LoginPage';
 import LogoutPage from './views/Pages/Login/Login';
 import { Provider } from 'react-redux'
 import { PrivateRoute } from './helpers/PrivateRoute';
@@ -32,7 +32,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Switch>
-              <Route exact path="/login"  name="Login Page" component={Login} />
+              <Route exact path="/login"  name="Login Page" component={LoginPage} />
               <Route exact path="/logout" name="Logout Page" component={LogoutPage} />
               <Route exact path="/register" name="Register Page" component={Register} />
               <Route exact path="/404" name="Page 404" component={Page404} />

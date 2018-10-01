@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import { connect } from 'react-redux';
-import { userActions } from '../../../actions';
+import { reduxForm } from 'redux-form';
 
 class Login extends Component {
 
-  handleSubmit(e) {
-    e.preventDefault();
+  constructor(props) {
+    super(props);
 
+    // reset login status
+    this.props.logout();
+
+    this.state = {
+      username: '',
+      password: '',
+      submitted: false
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit(e) {
     this.setState({ submitted: true });
     const { username, password } = this.state;
     const { dispatch } = this.props;
     if (username && password) {
-      dispatch(userActions.login(username, password));
+      this.props.login(username, password);
     }
   }
 
   render() {
+    const { loggingIn } = this.props;
+    const { username, password, submitted } = this.state;
+
     return (
       <div className="app flex-row align-items-center">
         <Container>
@@ -34,7 +55,10 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
+                        <Input type="text" name="username" placeholder="Username" value={username} onChange={this.handleChange} autoComplete="username" />
+                        {submitted && !username &&
+                          <div className="help-block">Username is required</div>
+                        }
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -42,11 +66,14 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" />
+                        <Input type="password" name="password" placeholder="Password" value={password} onChange={this.handleChange} autoComplete="current-password" />
+                        {submitted && !password &&
+                          <div className="help-block">Password is required</div>
+                        }
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
+                          <Button color="primary" className="px-4" onClick={this.handleSubmit}>Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -74,12 +101,5 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { loggingIn } = state.authentication;
-  return {
-    loggingIn
-  };
-}
-
-export default connect(mapStateToProps)(Login);
+export default reduxForm({form: 'Login'})(Login);
 

@@ -1,4 +1,4 @@
-import config from 'config';
+import { myConfig as config } from '../helpers/config';
 import { authHeader } from '../helpers';
 
 export const userService = {
@@ -11,14 +11,14 @@ function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ usernameOrEmail: username, password: password })
     };
 
-    return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${config.apiUrl}auth/signin`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
-            if (user.token) {
+            if (user.accessToken) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
             }
@@ -48,7 +48,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                window.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
