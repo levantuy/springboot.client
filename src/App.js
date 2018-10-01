@@ -17,8 +17,7 @@ import './scss/style.css'
 import { DefaultLayout } from './layouts';
 // Pages
 import { Page404, Page500, Register } from './views/Pages';
-import LoginPage from './containers/LoginPage';
-import LogoutPage from './views/Pages/Login/Login';
+import { LoginPage, LogoutPage  } from './containers';
 import { Provider } from 'react-redux'
 import { PrivateRoute } from './helpers/PrivateRoute';
 import { store } from './helpers';

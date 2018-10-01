@@ -31,5 +31,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+var connected = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export  {connected as LoginPage };
