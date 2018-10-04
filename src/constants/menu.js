@@ -1,0 +1,5 @@
+export const menuConstants = {
+    MENU_REQUEST: 'USERS_LOGIN_REQUEST',
+    MENU_SUCCESS: 'USERS_LOGIN_SUCCESS',
+    MENU_FAILURE: 'USERS_LOGIN_FAILURE',    
+};

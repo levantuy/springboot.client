@@ -14,7 +14,7 @@ import 'simple-line-icons/css/simple-line-icons.css';
 import './scss/style.css'
 
 // Containers
-import { DefaultLayout } from './layouts';
+import { DefaultLayout } from './containers';
 // Pages
 import { Page404, Page500, Register } from './views/Pages';
 import { LoginPage, LogoutPage  } from './containers';

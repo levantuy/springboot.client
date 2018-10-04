@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
+import { reduxForm } from 'redux-form';
 
 import {
   AppAside,
@@ -23,7 +24,49 @@ import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
 class DefaultLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.props.getAll();    
+  }
+
   render() {
+    if (this.props.menu.loading) return (<div>Loading..</div>);
+    const x = {
+      items: this.props.menu.menus
+    }; 
+
+    // const x = {
+    //   items: [
+    //     {
+    //       name: 'Dashboard',
+    //       url: '/dashboard',
+    //       children: [],
+    //       icon: 'icon-speedometer',
+    //       badge: {
+    //         variant: 'info',
+    //         text: 'NEW',
+    //       },
+    //     }
+    //   ]
+    // };
+
+    // this.props.menu.menus.map(function(item, index){      
+    //   const menuInfo = {
+    //     name: 'Dashboard',
+    //     url: '/dashboard',
+    //     icon: 'icon-speedometer',
+    //     badge: {
+    //       variant: 'info',
+    //       text: 'NEW',
+    //     },
+    //   };
+    //   // menuInfo.name = item.name;
+    //   // menuInfo.url = item.url;
+    //   // menuInfo.icon = item.icon;
+    //   // menuInfo.badge = {};
+    //   items.push(menuInfo);
+    // });
+
     return (
       <div className="app">
         <AppHeader fixed>
@@ -33,20 +76,20 @@ class DefaultLayout extends Component {
           <AppSidebar fixed display="lg">
             <AppSidebarHeader />
             <AppSidebarForm />
-            <AppSidebarNav navConfig={navigation} {...this.props} />
+            <AppSidebarNav navConfig={x} {...this.props} />
             <AppSidebarFooter />
             <AppSidebarMinimizer />
           </AppSidebar>
           <main className="main">
-            <AppBreadcrumb appRoutes={routes}/>
+            <AppBreadcrumb appRoutes={routes} />
             <Container fluid>
               <Switch>
                 {routes.map((route, idx) => {
-                    return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
-                        <route.component {...props} />
-                      )} />)
-                      : (null);
-                  },
+                  return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                    <route.component {...props} />
+                  )} />)
+                    : (null);
+                },
                 )}
                 <Redirect from="/" to="/dashboard" />
               </Switch>
@@ -64,4 +107,4 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+export default reduxForm({ form: 'DefaultLayout' })(DefaultLayout);
