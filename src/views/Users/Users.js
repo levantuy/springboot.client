@@ -94,7 +94,7 @@ class Users extends Component {
         <ConfirmMessage onAccept={this.handleDeleteAccept} ref="confirmMessage"></ConfirmMessage>
         <BootstrapTable id={this.props.tableId}
           remote={{ pagination: true, filter: false }}
-          keyField="Id"
+          keyField="id"
           data={this.props.usersList.users}
           columns={columns}
           filter={filterFactory()}
