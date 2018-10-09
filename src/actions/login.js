@@ -36,11 +36,11 @@ function logout() {
     return { type: userConstants.LOGOUT };
 }
 
-function getAll() {
+function getAll(pageIndex, pageSize) {
     return dispatch => {
         dispatch(request());
 
-        userService.getAll()
+        userService.getAll(pageIndex, pageSize)
             .then(
                 users => dispatch(success(users)),
                 error => dispatch(failure(error))

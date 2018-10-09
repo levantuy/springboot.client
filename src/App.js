@@ -20,7 +20,8 @@ import { Page404, Page500, Register } from './views/Pages';
 import { LoginPage, LogoutPage  } from './containers';
 import { Provider } from 'react-redux'
 import { PrivateRoute } from './helpers/PrivateRoute';
-import { store } from './helpers';
+import configureStore from './store/configureStore.js';
+const store = configureStore();
 
 // import { renderRoutes } from 'react-router-config';
 

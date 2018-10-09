@@ -1,5 +1,5 @@
 import { myConfig as config } from '../helpers/config';
-import { authHeader } from '../helpers';
+import { authHeader, functionGlobal } from '../helpers';
 
 export const userService = {
     login,
@@ -15,7 +15,7 @@ function login(username, password) {
     };
 
     return fetch(`${config.apiUrl}auth/signin`, requestOptions)
-        .then(handleResponse)
+        .then(functionGlobal.handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
             if (user.accessToken) {
@@ -32,29 +32,11 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getAll() {
+function getAll(pageIndex, pageSize) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout();
-                window.location.reload(true);
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
+    return fetch(`${config.apiUrl}user?page=${pageIndex}&size=${pageSize}`, requestOptions).then(functionGlobal.handleResponse);
 }

@@ -35,38 +35,6 @@ class DefaultLayout extends Component {
       items: this.props.menu.menus
     }; 
 
-    // const x = {
-    //   items: [
-    //     {
-    //       name: 'Dashboard',
-    //       url: '/dashboard',
-    //       children: [],
-    //       icon: 'icon-speedometer',
-    //       badge: {
-    //         variant: 'info',
-    //         text: 'NEW',
-    //       },
-    //     }
-    //   ]
-    // };
-
-    // this.props.menu.menus.map(function(item, index){      
-    //   const menuInfo = {
-    //     name: 'Dashboard',
-    //     url: '/dashboard',
-    //     icon: 'icon-speedometer',
-    //     badge: {
-    //       variant: 'info',
-    //       text: 'NEW',
-    //     },
-    //   };
-    //   // menuInfo.name = item.name;
-    //   // menuInfo.url = item.url;
-    //   // menuInfo.icon = item.icon;
-    //   // menuInfo.badge = {};
-    //   items.push(menuInfo);
-    // });
-
     return (
       <div className="app">
         <AppHeader fixed>

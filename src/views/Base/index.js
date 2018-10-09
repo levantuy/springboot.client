@@ -15,8 +15,12 @@ import Switches from './Switches';
 import Tables from './Tables';
 import Tabs from './Tabs';
 import Tooltips from './Tooltips';
+import { ButtonTableTop, ConfirmMessage } from './Controls';
+import Users from '../Users/Users';
+import { ButtonsInsideTable } from './Controls';
 
 export {
-  Breadcrumbs, Cards, Carousels, Collapses, Dropdowns, Forms, Jumbotrons, ListGroups, Navbars, Navs, Popovers, ProgressBar, Switches, Tables, Tabs, Tooltips, Paginations
+  Breadcrumbs, Cards, Carousels, Collapses, Dropdowns, Forms, Jumbotrons, ListGroups, Navbars, Navs, Popovers, ProgressBar, Switches, Tables, Tabs, Tooltips, Paginations,
+  ButtonTableTop, Users, ConfirmMessage, ButtonsInsideTable
 };
 

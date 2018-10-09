@@ -15,7 +15,7 @@ import {
   Switches,
   Tables,
   Tabs,
-  Tooltips,
+  Tooltips, ButtonTableMiddle, ButtonTableTop,
 } from './Base';
 
 import { ButtonDropdowns, ButtonGroups, Buttons, BrandButtons } from './Buttons';
@@ -26,6 +26,7 @@ import { Alerts, Badges, Modals } from './Notifications';
 import { Login, Page404, Page500, Register } from './Pages';
 import { Colors, Typography } from './Theme';
 import Widgets from './Widgets';
+import Users from './Users';
 
 export {
   Badges,
@@ -64,6 +65,7 @@ export {
   Carousels,
   Cards,
   Breadcrumbs,
-  Paginations,
+  Paginations, ButtonTableMiddle, ButtonTableTop, 
+  Users,
 };
 
