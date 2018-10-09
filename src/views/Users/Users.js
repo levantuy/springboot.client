@@ -83,7 +83,7 @@ class Users extends Component {
     }, {
       dataField: 'noexist',
       text: 'Xử lý',
-      formatter: (cell, row, rowIndex, formatExtraData) => <ButtonsInsideTable row={row} rowIndex={rowIndex} edit={this.handleEdit} delete={this.handleDelete} />,
+      formatter: (cell, row, rowIndex, formatExtraData) => <ButtonsInsideTable editUrl="/users/" row={row} rowIndex={rowIndex} delete={this.handleDelete} />,
       headerStyle: {
         width: '20%'
       }
