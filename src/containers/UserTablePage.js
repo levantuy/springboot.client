@@ -3,10 +3,12 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { ButtonTableTop, Users } from '../views';
 import { userActions } from '../actions';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import UserFormPage from './UserFormPage';
 
 class UserTablePage extends Component {
-    constructor(props){
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             tableId: "usersTableId",
         }
@@ -14,20 +16,28 @@ class UserTablePage extends Component {
         this.handleFetchData = this.handleFetchData.bind(this);
     }
 
-    handleAdd(){
-
+    handleAdd() {
+        
     }
 
-    handleFetchData(index, size){
+    handleFetchData(index, size) {
         this.props.getAll(index, size);
     }
 
-    render(){
-        return(
+    render() {
+        // if error object exist show errors
+        if (this.props.usersList.error) return (
             <div>
-                <ButtonTableTop tableId ={this.state.tableId} add={this.handleAdd} {...this.props}></ButtonTableTop>
-                <Users tableId ={this.state.tableId}
-                    fetchData = {this.handleFetchData} {...this.props}
+
+            </div>
+        )
+
+        // normal
+        return (
+            <div>
+                <ButtonTableTop tableId={this.state.tableId} add={this.handleAdd} addUrl="/users/0" {...this.props}></ButtonTableTop>
+                <Users tableId={this.state.tableId} add={this.handleAdd}
+                    fetchData={this.handleFetchData} {...this.props}
                 />
             </div>
         );

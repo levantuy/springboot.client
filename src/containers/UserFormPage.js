@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
+import { User } from '../views';
+import classnames from 'classnames';
+import { connect } from 'react-redux';
 
 class UserFormPage extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            activeTab: '1',            
+        }
+        this.toggle = this.toggle.bind(this);
+    }
 
+    toggle(activeTab){
+        this.setState({activeTab});
     }
     
     render() {
@@ -27,7 +37,7 @@ class UserFormPage extends Component {
                     </Nav>
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
-                            <UserDetails user_id={this.state.user_id} Exit={this.handleExit.bind(this)} update_asset_id={this.handleAssetId} />
+                            <User />
                         </TabPane>
                         <TabPane tabId="2">
                             
@@ -45,16 +55,12 @@ class UserFormPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    usersList: state.usersList,
+    
 })
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAll: (pageIndex, pageSize) => {
-            dispatch(userActions.getAll(pageIndex, pageSize));
-        }, delete: () => {
-            dispatch(userActions.delete());
-        }
+        
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserFormPage);
