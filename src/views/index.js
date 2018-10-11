@@ -2,6 +2,7 @@ import {
   ButtonTableMiddle, 
   ButtonTableTop,
   ButtonsInsideTable,
+  ErrorForm,
 } from './Base';
 
 import Dashboard from './Dashboard';
@@ -19,5 +20,6 @@ export {
   Users, 
   User,
   ButtonsInsideTable,
+  ErrorForm,
 };
 

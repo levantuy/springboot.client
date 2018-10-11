@@ -35,6 +35,8 @@ class DefaultLayout extends Component {
       items: this.props.menu.menus
     }; 
 
+    if(!x.items) return(<div>đang tải dữ liệu</div>)
+
     return (
       <div className="app">
         <AppHeader fixed>

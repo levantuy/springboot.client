@@ -38,5 +38,5 @@ function getAll(pageIndex, pageSize) {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}user?page=${pageIndex}&size=${pageSize}`, requestOptions).then(functionGlobal.handleResponse);
+    return fetch(`${config.apiUrl}users?page=${pageIndex}&size=${pageSize}`, requestOptions).then(functionGlobal.handleResponse);
 }

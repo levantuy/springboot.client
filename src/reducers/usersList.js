@@ -4,6 +4,7 @@ const initialState = {
   loading: true, 
   users: [],
   totalElements: 0, 
+  error: undefined,    
 };
 
 export function usersList(state = initialState, action) {
@@ -20,7 +21,10 @@ export function usersList(state = initialState, action) {
         totalElements: action.users.totalElements, 
       };
     case userConstants.GETALL_FAILURE:
-      return {};
+      return {
+        loading: false,
+        error: action.error,
+      };
     default:
       return state
   }

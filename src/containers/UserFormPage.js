@@ -8,9 +8,10 @@ class UserFormPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            activeTab: '1',            
+            activeTab: '1',   
+            id: this.props.match.params.id,         
         }
-        this.toggle = this.toggle.bind(this);
+        this.toggle = this.toggle.bind(this);        
     }
 
     toggle(activeTab){

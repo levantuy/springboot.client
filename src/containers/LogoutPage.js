@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { userActions } from '../actions';
+import { authenticateActions } from '../actions';
 import Logout from '../views/Pages/Logout/Logout'
 
 const LogoutPage = (props) => {
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => {
-            dispatch(userActions.logout());
+            dispatch(authenticateActions.logout());
         }
     }
 }

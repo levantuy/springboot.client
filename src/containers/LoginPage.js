@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import LoginForm from '../views/Pages/Login/Login';
-import { userActions } from '../actions';
+import { authenticateActions } from '../actions';
 
 
 const LoginPage = (props) => {
@@ -25,9 +25,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         login: (username, password) => {
-            dispatch(userActions.login(username, password));
+            dispatch(authenticateActions.login(username, password));
         }, logout: () => {
-            dispatch(userActions.logout());
+            dispatch(authenticateActions.logout());
         }
     }
 }

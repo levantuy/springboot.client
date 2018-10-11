@@ -56,7 +56,7 @@ class Users extends Component {
 
     if (!this.props.usersList || this.props.usersList.loading) return (<div>
       <h3>Đang tải dữ liệu</h3>
-    </div>);
+    </div>);    
 
     const columns = [{
       dataField: 'Id',

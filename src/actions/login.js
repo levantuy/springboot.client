@@ -3,10 +3,9 @@ import { userService } from '../services';
 //import { alertActions } from './';
 import { history } from '../helpers';
 
-export const userActions = {
+export const authenticateActions = {
     login,
-    logout,
-    getAll
+    logout,    
 };
 
 function login(username, password) {
@@ -34,20 +33,4 @@ function login(username, password) {
 function logout() {
     userService.logout();
     return { type: userConstants.LOGOUT };
-}
-
-function getAll(pageIndex, pageSize) {
-    return dispatch => {
-        dispatch(request());
-
-        userService.getAll(pageIndex, pageSize)
-            .then(
-                users => dispatch(success(users)),
-                error => dispatch(failure(error))
-            );
-    };
-
-    function request() { return { type: userConstants.GETALL_REQUEST } }
-    function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
-    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }

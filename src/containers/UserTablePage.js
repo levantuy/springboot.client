@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { ButtonTableTop, Users } from '../views';
+import { ButtonTableTop, Users, ErrorForm } from '../views';
 import { userActions } from '../actions';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import UserFormPage from './UserFormPage';
 
 class UserTablePage extends Component {
     constructor(props, context) {
@@ -26,11 +23,7 @@ class UserTablePage extends Component {
 
     render() {
         // if error object exist show errors
-        if (this.props.usersList.error) return (
-            <div>
-
-            </div>
-        )
+        if (this.props.usersList.error) return (<ErrorForm code={this.props.usersList.error.code} message={this.props.usersList.error.message}/>);
 
         // normal
         return (
