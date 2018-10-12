@@ -3,6 +3,7 @@ import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap
 import { User } from '../views';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import { userActions } from '../actions';
 
 class UserFormPage extends Component {
     constructor(props){
@@ -11,7 +12,12 @@ class UserFormPage extends Component {
             activeTab: '1',   
             id: this.props.match.params.id,         
         }
-        this.toggle = this.toggle.bind(this);        
+        this.toggle = this.toggle.bind(this);    
+        this.handleGetUser = this.handleGetUser.bind(this);    
+    }
+
+    handleGetUser(id){
+        this.props.getUser(id);
     }
 
     toggle(activeTab){
@@ -38,7 +44,9 @@ class UserFormPage extends Component {
                     </Nav>
                     <TabContent activeTab={this.state.activeTab}>
                         <TabPane tabId="1">
-                            <User />
+                            <User id={this.state.id} 
+                                getUser={this.handleGetUser}
+                            />
                         </TabPane>
                         <TabPane tabId="2">
                             
@@ -56,12 +64,15 @@ class UserFormPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    
-})
+    userForm: state.userForm
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        
+        getUser: (id) => {
+            dispatch(userActions.getUser(id));
+        }
     }
-}
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(UserFormPage);

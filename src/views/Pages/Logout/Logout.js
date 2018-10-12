@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { reduxForm } from 'redux-form';
 
 class Logout extends Component {

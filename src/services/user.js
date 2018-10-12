@@ -4,7 +4,9 @@ import { authHeader, functionGlobal } from '../helpers';
 export const userService = {
     login,
     logout,
-    getAll
+    getAll,
+    getOne,
+    deleteUser,
 };
 
 function login(username, password) {
@@ -39,4 +41,22 @@ function getAll(pageIndex, pageSize) {
     };
 
     return fetch(`${config.apiUrl}users?page=${pageIndex}&size=${pageSize}`, requestOptions).then(functionGlobal.handleResponse);
+}
+
+function getOne(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}users/byid/${id}`, requestOptions).then(functionGlobal.handleResponse);
+}
+
+function deleteUser(id) {
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}users/deleteCustom/${id}`, requestOptions).then(functionGlobal.handleResponse);
 }

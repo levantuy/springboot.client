@@ -5,7 +5,7 @@ const initialState = {
   userInfo: {},  
 };
 
-export function usersList(state = initialState, action) {
+export function userForm(state = initialState, action) {
   switch (action.type) {
     case userConstants.GETONE_REQUEST:
       return {

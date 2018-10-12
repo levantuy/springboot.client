@@ -45,8 +45,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getAll: (pageIndex, pageSize) => {
             dispatch(userActions.getAll(pageIndex, pageSize));
-        }, delete: () => {
-            dispatch(userActions.delete());
+        }, deleteUser: (id) => {
+            dispatch(userActions.deleteUser(id));
         }
     }
 }

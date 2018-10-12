@@ -38,7 +38,7 @@ class Users extends Component {
   }
 
   handleDeleteAccept() {
-    this.props.delete(this.state.id);
+    this.props.deleteUser(this.state.id);
   };
 
   handleTableChange = (type, { page, sizePerPage, filters }) => {

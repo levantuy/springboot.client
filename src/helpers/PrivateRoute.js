@@ -1,7 +1,5 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router'
-import { connect } from 'react-redux'
-import * as reducers from '../reducers'
+import React from 'react';
+import { Route, Redirect } from 'react-router';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (

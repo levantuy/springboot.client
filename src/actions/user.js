@@ -4,6 +4,7 @@ import { userService } from '../services';
 export const userActions = {
     getAll, 
     getUser,
+    deleteUser,
 };
 
 function getAll(index, size) {
@@ -28,7 +29,7 @@ function getUser(id) {
     return dispatch => {
         dispatch(request());
 
-        userService.getUser(id)
+        userService.getOne(id)
             .then(
                 userInfo => dispatch(success(userInfo)),
                 error => dispatch(failure(error))
@@ -40,4 +41,25 @@ function getUser(id) {
         return { type: userConstants.GETONE_SUCCESS, userInfo } 
     }
     function failure(error) { return { type: userConstants.GETONE_FAILURE, error } }
+}
+
+function deleteUser(id) {
+    return dispatch => {
+        dispatch(request());
+
+        userService.deleteUser(id)
+            .then(
+                response => {
+                    dispatch(getAll(0, 10));
+                    dispatch(success(response))
+                },
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: userConstants.DELETE_REQUEST } }
+    function success(response) {         
+        return { type: userConstants.DELETE_SUCCESS, response } 
+    }
+    function failure(error) { return { type: userConstants.DELETE_FAILURE, error } }
 }
