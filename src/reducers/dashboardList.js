@@ -2,8 +2,7 @@ import { dashboardConstants } from '../constants';
 
 const initialState = { 
   loading: true, 
-  dashboards: [],
-  totalElements: 0, 
+  dashboards: [],  
   error: undefined,    
 };
 
@@ -17,8 +16,7 @@ export function dashboardList(state = initialState, action) {
     case dashboardConstants.GETALL_SUCCESS:
       return {
         loading: false,
-        dashboards: action.dashboards,
-        totalElements: action.dashboards.totalElements, 
+        dashboards: action.dashboards,        
       };
     case dashboardConstants.GETALL_FAILURE:
       return {

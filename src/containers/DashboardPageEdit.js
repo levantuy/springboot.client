@@ -16,9 +16,11 @@ class DashboardPage extends Component {
             compactType: "vertical",
             mounted: false,
             layouts: { lg: this.props.initialLayout },            
-        };        
+        };
+        this.save = this.save.bind(this);
         this.generateDOM = this.generateDOM.bind(this);
-        this.props.getAll(2, true);        
+        this.props.getAll(2, this.state.id);
+        this.updateLayout = this.updateLayout.bind(this);
     }
 
     static defaultProps = {
@@ -77,12 +79,33 @@ class DashboardPage extends Component {
 
     onLayoutChange = (layout, layouts) => {
         //this.props.onLayoutChange(layout, layouts);        
-        //this.updateLayout(layout);
+        this.updateLayout(layout);
+    };
+
+    async updateLayout(layout) {
+        var listNew = await this.state.layouts.lg;
+        await listNew.forEach(element => {
+            layout.forEach(elementNew => {
+                if (element.i == elementNew.i) {
+                    element.x = elementNew.x;
+                    element.y = elementNew.y;
+                    element.w = elementNew.w;
+                    element.h = elementNew.h;
+                    Promise.resolve('Done');
+                }
+            });
+        });
+        this.setState({ layouts: { lg: listNew } });
+    }
+
+    save() {
+        this.props.save(this.state.layouts.lg);
     };
 
     render() {
         if (this.props.dashboardList && this.props.dashboardList.loading) return (<div></div>);        
-        return (<div>            
+        return (<div>
+            <Button color="primary" onClick={this.save}>Configuration save</Button>
             <ResponsiveReactGridLayout
                 {...this.props}
                 layouts={this.state.layouts}

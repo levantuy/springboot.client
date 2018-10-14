@@ -6,19 +6,33 @@ export const dashboardActions = {
     save,
 };
 
-function getAll(userId) {
+function getAll(userId, is_static) {
     return dispatch => {
         dispatch(request());
 
         dashboardService.getAll(userId)
             .then(
-                dashboards => dispatch(success(dashboards)),
+                dashboards => dispatch(success(dashboards, is_static)),
                 error => dispatch(failure(error))
             );
     };
 
     function request() { return { type: dashboardConstants.GETALL_REQUEST } }
-    function success(dashboards) {         
+    function success(response, is_static) {
+        var dashboards = [];
+        response.forEach(element => {
+            var item = {
+                id: element.id,
+                userId: element.userId,
+                i: element.i,
+                x: element.x,
+                y: element.y,
+                w: element.w,
+                h: element.h,
+                static: is_static
+            }
+            dashboards.push(item);
+        });         
         return { type: dashboardConstants.GETALL_SUCCESS, dashboards } 
     }
     function failure(error) { return { type: dashboardConstants.GETALL_FAILURE, error } }

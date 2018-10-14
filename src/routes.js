@@ -12,6 +12,11 @@ const Dashboard = Loadable({
   loading: Loading,
 });
 
+const DashboardEdit = Loadable({
+  loader: () => import('./containers/DashboardPageEdit'),
+  loading: Loading,
+});
+
 const Users = Loadable({
   loader: () => import('./containers/UserTablePage'),
   loading: Loading,
@@ -28,6 +33,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },  
   { path: '/users', exact: true,  name: 'Users', component: Users },  
   { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  { path: '/dashboardEdit', exact: true,  name: 'Dashboard edit', component: DashboardEdit },
 ];
 
 export default routes;
