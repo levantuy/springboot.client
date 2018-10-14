@@ -72,6 +72,11 @@ class Members extends Component {
         this.state = {
             card1: false,
         }
+        this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    handleRemove(){
+        
     }
    
     render() {
@@ -84,7 +89,7 @@ class Members extends Component {
                                 <i className="icon-settings"></i>
                             </DropdownToggle>
                             <DropdownMenu right>
-                                <DropdownItem>Action</DropdownItem>
+                                <DropdownItem onClick={this.handleRemove}>Action</DropdownItem>
                                 <DropdownItem>Another action</DropdownItem>
                                 <DropdownItem disabled>Disabled action</DropdownItem>
                                 <DropdownItem>Something else here</DropdownItem>

@@ -4,6 +4,8 @@ import { dashboardService } from '../services';
 export const dashboardActions = {
     getAll, 
     save,
+    getDictionaries,
+    add,
 };
 
 function getAll(userId, is_static) {
@@ -54,4 +56,43 @@ function save(dashboards) {
         return { type: dashboardConstants.SAVE_SUCCESS, response } 
     }
     function failure(error) { return { type: dashboardConstants.SAVE_FAILURE, error } }
+}
+
+function add(dashboard) {
+    return dispatch => {
+        dispatch(request());
+
+        dashboardService.add(dashboard)
+            .then(
+                response => {
+                    dispatch(getDictionaries());
+                    dispatch(getAll(2, false));
+                },
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: dashboardConstants.SAVE_REQUEST } }
+    function success(response) {         
+        return { type: dashboardConstants.SAVE_SUCCESS, response } 
+    }
+    function failure(error) { return { type: dashboardConstants.SAVE_FAILURE, error } }
+}
+
+function getDictionaries() {
+    return dispatch => {
+        dispatch(request());
+
+        dashboardService.getDictionaries()
+            .then(
+                dashboards => dispatch(success(dashboards)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: dashboardConstants.GETDICTIONARIES_REQUEST } }
+    function success(dashboards) {        
+        return { type: dashboardConstants.GETDICTIONARIES_SUCCESS, dashboards } 
+    }
+    function failure(error) { return { type: dashboardConstants.GETDICTIONARIES_FAILURE, error } }
 }
