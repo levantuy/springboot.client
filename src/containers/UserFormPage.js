@@ -15,7 +15,7 @@ class UserFormPage extends Component {
         this.toggle = this.toggle.bind(this);    
         this.handleGetUser = this.handleGetUser.bind(this);    
     }
-
+    
     handleGetUser(id){
         this.props.getUser(id);
     }

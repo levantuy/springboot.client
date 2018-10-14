@@ -6,6 +6,9 @@ import {
 } from './Base';
 
 import Dashboard from './Dashboard';
+import Members from './Dashboard/Members'; 
+import MembersChart from './Dashboard/MembersChart';
+import Traffic from './Dashboard/Traffic';
 import { Login, Page404, Page500, Register } from './Pages';
 import { User, Users} from './Users';
 
@@ -20,6 +23,8 @@ export {
   Users, 
   User,
   ButtonsInsideTable,
-  ErrorForm,
+  ErrorForm, Members,
+  MembersChart,
+  Traffic,
 };
 

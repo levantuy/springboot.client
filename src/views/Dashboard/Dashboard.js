@@ -61,18 +61,8 @@ class Dashboard extends Component {
   generateDOM() {
     return _.map(this.state.layouts.lg, function (l, i) {
       return (
-        <div key={i} className={l.static ? "static" : ""}>
-          {l.static ? (
-            <span
-              className="text"
-              title="This item is static and cannot be removed or resized."
-            >
-              Static - {i}
-            </span>
-          ) : (
-              <span className="text">{i}</span>
-            )}
-            <Acomponent/>
+        <div key={l.i} className={l.static ? "static" : ""}>
+          {i > 0 ? (<Acomponent />) : (<Acomponent />)}
         </div>
       );
     });
@@ -109,22 +99,26 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Button color="primary" onClick={this.save}>Configuration save</Button>
-        <ResponsiveReactGridLayout
-          {...this.props}
-          layouts={this.state.layouts}
-          onBreakpointChange={this.onBreakpointChange}
-          onLayoutChange={this.onLayoutChange}
-          // WidthProvider option
-          measureBeforeMount={false}
-          // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-          // and set `measureBeforeMount={true}`.
-          useCSSTransforms={this.state.mounted}
-          compactType={this.state.compactType}
-          preventCollision={!this.state.compactType}
-        >
-          {this.generateDOM()}
-        </ResponsiveReactGridLayout>
+        <Row>
+          <Col xs="12" md="12">
+          </Col>
+          <Button color="primary" onClick={this.save}>Configuration save</Button>
+          <ResponsiveReactGridLayout
+            {...this.props}
+            layouts={this.state.layouts}
+            onBreakpointChange={this.onBreakpointChange}
+            onLayoutChange={this.onLayoutChange}
+            // WidthProvider option
+            measureBeforeMount={false}
+            // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
+            // and set `measureBeforeMount={true}`.
+            useCSSTransforms={this.state.mounted}
+            compactType={this.state.compactType}
+            preventCollision={!this.state.compactType}
+          >
+            {this.generateDOM()}
+          </ResponsiveReactGridLayout>
+        </Row>
       </div>
     )
   }
