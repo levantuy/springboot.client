@@ -22,7 +22,7 @@ class DashboardPage extends Component {
         };
         this.save = this.save.bind(this);
         this.generateDOM = this.generateDOM.bind(this);
-        this.props.getAll(2, false);
+        this.props.getAll(1, false);
         this.updateLayout = this.updateLayout.bind(this);
         this.handleChangeDashboard = this.handleChangeDashboard.bind(this);
         this.props.getDictionaries();  
@@ -167,8 +167,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAll: (userId, is_static) => {
-            dispatch(dashboardActions.getAll(userId, is_static));
+        getAll: (is_static) => {
+            dispatch(dashboardActions.getAll(is_static));
         }, save: (dashboards) => {
             dispatch(dashboardActions.save(dashboards));
         }, getDictionaries: () => {

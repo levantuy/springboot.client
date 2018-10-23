@@ -18,7 +18,7 @@ class DashboardPage extends Component {
             layouts: { lg: this.props.initialLayout },            
         };        
         this.generateDOM = this.generateDOM.bind(this);
-        this.props.getAll(2, true);        
+        this.props.getAll(true);        
     }
 
     static defaultProps = {
@@ -108,8 +108,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAll: (userId, is_static) => {
-            dispatch(dashboardActions.getAll(userId, is_static));
+        getAll: (is_static) => {
+            dispatch(dashboardActions.getAll(is_static));
         }, save: (dashboards) => {
             dispatch(dashboardActions.save(dashboards));
         }

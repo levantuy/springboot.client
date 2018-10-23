@@ -8,13 +8,13 @@ export const dashboardService = {
     add,
 };
 
-function getAll(userId) {
+function getAll() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}userdashboard?userid=${userId}`, requestOptions).then(functionGlobal.handleResponse);
+    return fetch(`${config.apiUrl}userdashboard`, requestOptions).then(functionGlobal.handleResponse);
 }
 
 function getDictionaries() {

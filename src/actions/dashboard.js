@@ -8,11 +8,11 @@ export const dashboardActions = {
     add,
 };
 
-function getAll(userId, is_static) {
+function getAll(is_static) {
     return dispatch => {
         dispatch(request());
 
-        dashboardService.getAll(userId)
+        dashboardService.getAll()
             .then(
                 dashboards => dispatch(success(dashboards, is_static)),
                 error => dispatch(failure(error))
@@ -66,7 +66,7 @@ function add(dashboard) {
             .then(
                 response => {
                     dispatch(getDictionaries());
-                    dispatch(getAll(2, false));
+                    dispatch(getAll(false));
                 },
                 error => dispatch(failure(error))
             );
